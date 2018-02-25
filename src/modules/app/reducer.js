@@ -1,7 +1,7 @@
 import * as actions from './actionTypes';
 
 const initialState = {
-	status: 'ANONYMOUS',
+	status: 'AWAITING_AUTH_RESPONSE',
   email: null,
   displayName: null,
   photoURL: null,
@@ -11,17 +11,9 @@ const initialState = {
 export default function authReducer(state = initialState, action) {
   switch(action.type) {
     case actions.ATTEMPTING_LOGIN:
-      return {
-        status: 'AWAITING_AUTH_RESPONSE'
-      };
+      return {...state, status: 'AWAITING_AUTH_RESPONSE'};
     case actions.SIGNED_OUT:
-      return {
-        status: 'ANONYMOUS',
-        email: null,
-        displayName: null,
-        photoURL: null,
-        uid: null
-      };
+      return {...initialState, status: 'ANONYMOUS'}
     case actions.SIGNED_IN:
       return {
         status: 'SIGNED_IN',

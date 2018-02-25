@@ -23,7 +23,6 @@ export const signOut = () => {
 export const authChangesListener = () => {
 	return (dispatch) => {
 		auth.onAuthStateChanged((user) => {
-			console.log(user)
 			if(user){
 				dispatch(signedIn(user))
 			}
@@ -33,19 +32,3 @@ export const authChangesListener = () => {
 		})
 	}
 }
-
-// export const signIn = () => {
-//   return {
-//     type: 'SIGN_IN',
-//     email: 'bill@example.com',
-//     displayName: 'Bill Murray',
-//     photoURL: 'http://www.fillmurray.com/200/200',
-//     uid: 'firstUser'
-//   };
-// };
-
-// export const signOut = () => {
-//   return {
-//     type: 'SIGN_OUT'
-//   };
-// };

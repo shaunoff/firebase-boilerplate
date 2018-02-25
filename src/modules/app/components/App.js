@@ -1,11 +1,13 @@
 import React from 'react';
 
 const App = ({auth, signIn, signOut }) => {
-  console.log(auth)
+  if(auth.status === "AWAITING_AUTH_RESPONSE"){
+    return <h2>Loading...</h2>
+  }
   return (
-      <div className="Application--sidebar">
-				Status: {auth.uid ? "logged In" : "logged out"}
-				{auth.uid ? <button onClick={signOut}>sign Out</button> : <button onClick={signIn}>sign In</button>}
+      <div>
+				<h2>{`Status: ${auth.status === "SIGNED_IN" ? "logged in" : "logged out"}`}</h2>
+				{auth.status === "SIGNED_IN" ? <button onClick={signOut}>Sign Out</button> : <button onClick={signIn}>Sign In</button>}
       </div>
   );
 };
